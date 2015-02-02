@@ -1,0 +1,33 @@
+{
+  "name": "builder-jquery-css",
+  "version": "0.0.1-pre",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rxaviers/builder-jquery-css.git"
+  },
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "Rafael Xavier de Souza",
+    "email": "rxaviers@gmail.com",
+    "url": "http://rafael.xavier.blog.br"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/rxaviers/builder-jquery-css/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "builder-amd-css": "0.0.x"
+  },
+  "devDependencies": {
+    "async": "0.9.0",
+    "chai": "1.10.x",
+    "jshint": "2.6.x",
+    "mocha": "2.1.0"
+  },
+  "scripts": {
+    "test": "jshint index.js test/*.js && mocha"
+  }
+}
