@@ -85,6 +85,10 @@ function transformFiles( files, which ) {
  * jqueryCssBuilder( files, which, config, callback )
  */
 module.exports = function( files, which, config, callback ) {
-	var transformedFiles = transformFiles( files, which );
-	amdCssBuilder( transformedFiles, config, callback );
+	try {
+		var transformedFiles = transformFiles( files, which );
+		amdCssBuilder( transformedFiles, config, callback );
+	} catch( error ) {
+		callback( error );
+	}
 };
