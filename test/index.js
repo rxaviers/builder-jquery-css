@@ -4,15 +4,15 @@ var async = require( "async" ),
 	jQueryCSSBuilder = require( "../index.js" );
 
 describe( "jQuery CSS Builder", function() {
+	var files = {
+		"foo.js": fs.readFileSync( __dirname + "/fixtures/basic/foo.js" ),
+		"bar.js": fs.readFileSync( __dirname + "/fixtures/basic/bar.js" ),
+		"foo.css": fs.readFileSync( __dirname + "/fixtures/basic/foo.css" ),
+		"bar.css": fs.readFileSync( __dirname + "/fixtures/basic/bar.css" ),
+	};
 
 	describe( "Basic", function() {
-		var css,
-			files = {
-				"foo.js": fs.readFileSync( __dirname + "/fixtures/basic/foo.js" ),
-				"bar.js": fs.readFileSync( __dirname + "/fixtures/basic/bar.js" ),
-				"foo.css": fs.readFileSync( __dirname + "/fixtures/basic/foo.css" ),
-				"bar.css": fs.readFileSync( __dirname + "/fixtures/basic/bar.css" ),
-			};
+		var css;
 
 		before(function( done ) {
 			jQueryCSSBuilder( files, "baz", { include: [ "foo" ] }, function( error, _css ) {
@@ -82,4 +82,19 @@ describe( "jQuery CSS Builder", function() {
 
 	});
 
+	describe( "Empty bundle", function() {
+		var result;
+
+		before(function( done ) {
+			jQueryCSSBuilder( files, "nonexistent", { include: [ "foo" ] }, function( error, _result ) {
+				result = _result;
+				done( error );
+			});
+		});
+
+		it( "should build just fine", function() {
+			expect( result ).to.equal( "" );
+		});
+
+	});
 });
