@@ -49,6 +49,28 @@ describe( "jQuery CSS Builder", function() {
 
 	});
 
+	describe( "Basic - nested+appdir", function() {
+		var css,
+			files = {
+				"fixtures/version.js": fs.readFileSync( __dirname + "/fixtures/nested/version.js" ),
+				"fixtures/widgets/input.js": fs.readFileSync( __dirname + "/fixtures/nested/widgets/input.js" ),
+				"fixtures/theme/version.css": fs.readFileSync( __dirname + "/fixtures/nested/theme/version.css" ),
+				"fixtures/theme/input.css": fs.readFileSync( __dirname + "/fixtures/nested/theme/input.css" )
+			};
+
+		before(function( done ) {
+			jQueryCSSBuilder( files, "structure", { appDir: "fixtures", include: [ "widgets/input" ] }, function( error, _css ) {
+				css = _css;
+				done( error );
+			});
+		});
+
+		it( "should build just fine", function() {
+			expect( css ).to.equal( "input {}\nbody {}\n" );
+		});
+
+	});
+
 	describe( "Two bundles", function() {
 		var cssNorth, cssSouth;
 		var files = {

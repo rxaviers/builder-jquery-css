@@ -5,7 +5,7 @@ function cssDependencies( data, which ) {
 		regexp = new RegExp( "\\/\\/>>\\s*css\\." + which + ":(.*)", "g" );
 
 	data.replace( regexp, function( garbage, input ) {
-		input = input.split( "," ).map( trim ); 
+		input = input.split( "," ).map( trim );
 		result.push.apply( result, input );
 	});
 
@@ -15,15 +15,11 @@ function cssDependencies( data, which ) {
 }
 
 function jsDependencies( data ) {
-	var match,
-		result = [];
-
-	match = data.match( /define\(\[([^\]]*?)\]/ );
-	if ( match !== null ) {
-		result = match[ 1 ].split( "," ).map( trim );
+	var match = data.match( /define\(\[([^\]]*?)\]/ );
+	if ( match === null ) {
+		return [];
 	}
-	
-	return result;
+	return match[ 1 ].replace( /\/\/.+/g, "" ).split( "," ).map( trim );
 }
 
 /**
