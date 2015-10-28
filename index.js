@@ -15,7 +15,7 @@ function cssDependencies( data, which ) {
 }
 
 function jsDependencies( data ) {
-	var match = data.match( /define\(\[([^\]]*?)\]/ );
+	var match = data.match( /define\(\ ?\[([^\]]*?)\]/ );
 	if ( match === null ) {
 		return [];
 	}

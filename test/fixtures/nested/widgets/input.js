@@ -1,3 +1,3 @@
 //>> css.structure: ../theme/input.css
-define(["../version"], function(version) {
-});
+define( ["../version"], function( version ) {
+} );
